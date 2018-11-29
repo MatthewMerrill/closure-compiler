@@ -91,6 +91,11 @@ public final class Es6InjectRuntimeLibraries extends AbstractPostOrderCallback
       compiler.ensureLibraryInjected("util/global", /* force= */ false);
     }
 
+    // https://github.com/google/closure-compiler/issues/3139
+    if (mustBeCompiledAway.contains(Feature.OBJECT_PATTERN_REST)) {
+      compiler.ensureLibraryInjected("es6/object/assign", /* force= */ false);
+    }
+
     if (mustBeCompiledAway.contains(Feature.GENERATORS)) {
       compiler.ensureLibraryInjected("es6/generator_engine", /* force= */ false);
     }
